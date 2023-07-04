@@ -1,0 +1,62 @@
+<h1>{{ textConstants.POSTS }}</h1>
+<mat-divider></mat-divider>
+<div class="button-wrapper">
+    <button mat-raised-button color="primary" (click)="resetData()">{{textConstants.RESET_DATA}}</button>
+</div>
+<div class="table-wrapper">
+    <div *ngIf="arePostsLoading" class="spinner-wrapper">
+        <mat-spinner diameter="100" color="accent"></mat-spinner>
+    </div>
+    <mat-table
+        class="table"
+        [dataSource]="dataSource"
+    >
+        <!-- Favorite Checkbox Column -->
+        <ng-container [matColumnDef]="'favorite'">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let post">
+                <mat-icon (click)="toggleFavoriteStatus(post.id)">{{checkFavoriteStatus(post)}}</mat-icon>
+            </mat-cell>
+        </ng-container>
+        <!-- Post Title Column -->
+        <ng-container [matColumnDef]="'title'">
+            <mat-header-cell *matHeaderCellDef>
+                <div>
+                    <div>{{textConstants.POST_TITLE}}</div>
+                </div>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let post">{{post.title}}</mat-cell>
+        </ng-container>
+        <!-- Author Column -->
+        <ng-container [matColumnDef]="'author'">
+            <mat-header-cell *matHeaderCellDef class="date-header">
+                <div>
+                    <div>{{textConstants.POST_AUTHOR}}</div>
+                </div>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let post">{{post.author}}</mat-cell>
+        </ng-container>
+        <!-- # Of Comments Column -->
+        <ng-container [matColumnDef]="'numberOfComments'">
+            <mat-header-cell *matHeaderCellDef class="date-header">
+                <div>
+                    <div>{{textConstants.NUMBER_OF_COMMENTS}}</div>
+                </div>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let post" class="comments-number">{{post.numberOfComments}}</mat-cell>
+        </ng-container>
+        <!-- Actions Column -->
+        <ng-container [matColumnDef]="'actions'">
+            <mat-header-cell *matHeaderCellDef class="date-header"></mat-header-cell>
+            <mat-cell *matCellDef="let post">
+                <mat-icon (click)="deletePost(post.id)">delete_outlined</mat-icon>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns" class="table-row" (click)="goToPostDetails(row.id)"></mat-row>
+    </mat-table>
+    <div *ngIf="!posts || posts.length === 0" class="empty-state">
+        {{textConstants.NO_POSTS_FOUND}}
+    </div>
+</div>
+<mat-divider></mat-divider>

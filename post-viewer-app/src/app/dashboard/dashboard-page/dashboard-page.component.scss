@@ -1,0 +1,78 @@
+.spinner-wrapper{
+    position: absolute;
+    height: 38%;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    mat-spinner {
+        position: sticky;
+    }
+}
+
+.table-wrapper {
+    width: 50%;
+
+    margin: auto;
+}
+
+mat-header-cell {
+    text-align: center;
+}
+
+mat-divider {
+    margin: 20px;
+    padding: 20px;
+}
+
+.comments-number {
+    justify-content: center;
+}
+
+.empty-state {
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.05);
+    text-align: center;
+    line-height: 60px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.mat-column-favorite {
+    max-width: 83px;
+    padding-right: 0;
+}
+
+.mat-column-author {
+    max-width: fit-content;
+}
+
+.mat-column-numberOfComments {
+    max-width: 150px;
+    
+}
+
+.mat-column-actions {
+    max-width: 83px;
+    padding-right: 0;
+}
+
+mat-icon, .table-row {
+    border-radius: 12px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(0,0,0, 0.1);
+    }
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: end;
+    padding-right: 250px;
+}

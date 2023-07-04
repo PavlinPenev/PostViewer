@@ -1,0 +1,51 @@
+<h1 *ngIf="!!post">{{post.title}}</h1>
+<h3 *ngIf="!!post">{{post.body}}</h3>
+<mat-divider></mat-divider>
+
+<button mat-raised-button color="primary" (click)="goBack()">{{textConstants.GO_BACK}}</button>
+
+<p>{{textConstants.COMMENTS}}</p>
+<mat-list *ngIf="!!post">
+    <mat-list-item *ngFor="let comment of post.comments">
+        <div class="item-wrapper">
+            <div class="comment-content">
+                <label>{{textConstants.COMMENT_TITLE}} </label>
+                <a target="_blank" [href]="'mailto:' + comment.email">{{comment.name}}</a>
+                <p>{{textConstants.COMMENT_BODY}} {{comment.body}}</p>
+            </div>
+            <div class="delete-icon">
+                <mat-icon (click)="deleteComment(comment.id)">delete_outlined</mat-icon>
+            </div>
+        </div>
+    </mat-list-item>
+</mat-list>
+
+<h1 style="text-align: center; margin-top: 20px;">{{textConstants.ADD_COMMENT}}</h1>
+<form [formGroup]="form">
+    <div class="form-wrapper">
+        <div>
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>{{textConstants.NAME}}</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field style="width: 200px;" appearance="outline">
+                    <mat-label>{{textConstants.EMAIL}}</mat-label>
+                    <input matInput formControlName="email">
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>{{textConstants.BODY}}</mat-label>
+                    <input matInput formControlName="body">
+                </mat-form-field>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="button-wrapper">
+                <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="onAddComment()">{{textConstants.SUBMIT}}</button>
+            </div>
+        </div>
+    </div>
+</form>    
