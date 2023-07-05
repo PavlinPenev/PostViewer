@@ -15,7 +15,7 @@
         <ng-container [matColumnDef]="'favorite'">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let post">
-                <mat-icon (click)="toggleFavoriteStatus(post.id)">{{checkFavoriteStatus(post)}}</mat-icon>
+                <mat-icon (click)="toggleFavoriteStatus(post.id); $event.stopPropagation();">{{checkFavoriteStatus(post)}}</mat-icon>
             </mat-cell>
         </ng-container>
         <!-- Post Title Column -->
